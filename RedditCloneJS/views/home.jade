@@ -4,8 +4,9 @@ html(lang='en')
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='description', content='')
-    meta(name='author', content='')
+    meta(name='description', content='A JS-RedditClone for IntTech class at HSR')
+    meta(name='author', content='Daniela Peter, Marco Syfrig, Theo Winter')
+    //TODO: favicon
     //link(rel='icon', href='#{pathToAssets}/docs/favicon.ico')
     title Off Canvas Template for Bootstrap
     // Bootstrap core CSS
@@ -25,13 +26,19 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href='#') RedditCloneJS
+          a.navbar-brand(href='/') RedditCloneJS
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li.active
-              a(href='#') Home
+              a(href='/') Home
             li
-              a(href='#about') About
+              a(href='/about') About
+          form.navbar-form.navbar-right(role='form')
+            .form-group
+              input.form-control(type='text', placeholder='Username')
+            .form-group
+              input.form-control(type='password', placeholder='Password')
+            button.btn.btn-success(type='submit') Sign in
         // /.nav-collapse
       // /.container
     // /.navbar
