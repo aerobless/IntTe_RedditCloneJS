@@ -19,6 +19,12 @@ app.use(express.cookieParser());
 app.use(express.session({secret: '2234567890QWERTY'}));
 app.use(app.router);
 
+//Configure the server to use jade to display the views:
+app.set('views', __dirname+'/views');
+app.set('view engine', 'jade');
+app.configure(function() {
+    app.engine('.html', require('jade').__express);
+});
 
 function checkAuth(req, res, next) {
     if (typeof(req.session.user_id) == "number") {
@@ -171,8 +177,11 @@ app.post('/logout', function (req, res) {
 });
 
 //TEST
-app.get("/about", function(request, response) {
-  response.end("Welcome to the about page!");
+app.get('/about', function(req, res){
+    res.render('about.jade', {
+        title: 'About this Node Express Demo',
+        name: 'Theo'
+    });
 });
 
 app.use('/', express.static(__dirname + '/public/'));
