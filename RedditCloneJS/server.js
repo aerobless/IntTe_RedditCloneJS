@@ -170,6 +170,11 @@ app.post('/logout', function (req, res) {
 	res.json(true);
 });
 
+//TEST
+app.get("/about", function(request, response) {
+  response.end("Welcome to the about page!");
+});
+
 app.use('/', express.static(__dirname + '/public/'));
 
 //socket:
