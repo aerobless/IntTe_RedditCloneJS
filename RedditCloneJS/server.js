@@ -46,10 +46,10 @@ entries[0].comments.push(comment);
 
 //default user
 users.push(new User(users.length, "a", "a") );
-  
+
 function findUser(name)
 {
-	for (var i in users) 
+	for (var i in users)
 	{
 	   var user = users[i];
 	   if( user.name == name)
@@ -69,8 +69,12 @@ function returnIndex(res, id, array) {
 }
 
 app.get('/', function(req, res) {
-  res.type('text/plain'); 
-  res.json(entries);
+    res.render('home.jade', {
+        title: 'RedditCloneJS',
+        someText: ':D :D :D'
+    });
+  //res.type('text/plain');
+  //res.json(entries);
 });
  
 app.get('/login', function (req, res) {
