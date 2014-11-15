@@ -20,7 +20,7 @@ app.use(express.session({secret: '2234567890QWERTY'}));
 app.use(app.router);
 
 //Configure the server to use jade to display the views:
-app.set('views', __dirname+'/views');
+app.set('views', __dirname+'/client/views');
 app.set('view engine', 'jade');
 app.configure(function() {
     app.engine('.html', require('jade').__express);
@@ -45,7 +45,7 @@ comments.push(comment);
 entries[0].comments.push(comment);
 
 //default user
-users.push(new User(users.length, "a", "a") );
+users.push(new User(users.length, "a", "a"));
 
 function findUser(name)
 {
@@ -180,15 +180,7 @@ app.post('/logout', function (req, res) {
 	res.json(true);
 });
 
-//TEST
-app.get('/about', function(req, res){
-    res.render('about.jade', {
-        title: 'About this Node Express Demo',
-        name: 'Theo'
-    });
-});
-
-app.use('/', express.static(__dirname + '/public/'));
+app.use('/', express.static(__dirname + '/client/'));
 
 //socket:
 io = io.listen(app.listen(process.env.PORT || 4730));
@@ -201,5 +193,10 @@ io.sockets.on('disconnect', function (socket) {
     socket.emit('message', { action: 'disconnect' });
 });
 
-
-
+//TEST
+app.get('/about', function(req, res){
+    res.render('about.jade', {
+        title: 'About this Node Express Demo',
+        name: 'Theo'
+    });
+});
