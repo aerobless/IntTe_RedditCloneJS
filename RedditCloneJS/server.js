@@ -41,7 +41,9 @@ var users = [];
 var comments = [];
 
 //sample data
-entries.push(new Link(entries.length, "Title", "Author", "http://www.google.ch"));
+entries.push(new Link(entries.length, "Google", "Theo", "http://www.google.com"));
+entries.push(new Link(entries.length, "Bing", "Marco", "http://www.bing.com"));
+entries.push(new Link(entries.length, "Marco Duuuuuuden Leutenegger", "Daniela", "http://www.bing.com"));
 var comment = new Comment(0, "TestComment", "Author");
 comments.push(comment);
 entries[0].comments.push(comment);
