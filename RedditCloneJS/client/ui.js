@@ -8,9 +8,8 @@ window.onload = function () {
     var template = Handlebars.compile(source);
 
     var context = {title: "My New Post", body: "This is my first post!"}
-    var html    = template(context);
-    document.getElementById("test").innerHTML = html;
-    //document.writeln(html);
+    document.getElementById("template").innerHTML = template(context);
+
 /*
     document.getElementById("loginButton").onclick = function () {
         $.post("/login",
