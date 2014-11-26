@@ -7,10 +7,10 @@ window.onload = function () {
     var source = $("#home").html();
     var template = Handlebars.compile(source);
 
-    var context = {title: "My New Post", body: "This is my first post!"}
+    var context = {username: "world"}
     document.getElementById("template").innerHTML = template(context);
 
-/*
+
     document.getElementById("loginButton").onclick = function () {
         $.post("/login",
             {
@@ -19,7 +19,12 @@ window.onload = function () {
             },
             function(data,status){
                 userIsLoggedIn = data;
-                alert("Data: " + data + "\nStatus: " + status);
+
+                //Test:
+                //alert("Data: " + data + "\nStatus: " + status);
+
+                var context = {username: document.getElementById("username").value}
+                document.getElementById("template").innerHTML = template(context);
             });
         return false;
     };
@@ -37,5 +42,5 @@ window.onload = function () {
     document.getElementById("createNewSubreddit").onclick = function () {
         alert('Creating new subreddits is currently not supported');
         return false;
-    }; */
+    };
 }
