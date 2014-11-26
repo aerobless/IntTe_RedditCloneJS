@@ -11,7 +11,8 @@ RedditClone is a project for the class InternetTechnology at [HSR](http://www.hs
 1. Install Node.js. If you're using a mac [Homebrew](http://brew.sh/) is the way to go. (`brew install node`).
 2. Clone this repository `git clone https://github.com/aerobless/IntTe_RedditCloneJS.git`.
 3. Navigate to the local repo and run `npm install` to install the required node-modules.
-4. You can now start the server `node server.js` it will be hosted at `http://localhost:4730`.
+4. Run `bower install`. (Maybe you need to do `npm install -g bower` first.)
+5. You can now start the server `node server.js` it will be hosted at `http://localhost:4730`.
 
 ##Time Tracking
 This is a rudimentary time tracking. Please see the [commit-history](https://github.com/aerobless/IntTe_RedditCloneJS/commits/master) for more details.

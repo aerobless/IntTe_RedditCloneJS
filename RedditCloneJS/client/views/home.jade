@@ -48,7 +48,10 @@ html(lang='en')
           p.pull-right.visible-xs
             button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') Toggle nav
           .jumbotron
-            h1 Hello, world!
+            if userIsLoggedIn
+              h1 Hello,test!
+            else
+              h1 Hello, world!
             p
               | This is some random text that will be removed sometime in
               | the future.. or not. Maybe it will stay for all eternity. Reddit

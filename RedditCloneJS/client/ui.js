@@ -1,8 +1,18 @@
 ﻿/*jslint browser: true*/
 window.onload = function () {
     "use strict";
+    var userIsLoggedIn = false;
+
     document.getElementById("loginButton").onclick = function () {
-        alert('Hello ' + document.getElementById("username").value);
+        $.post("/login",
+            {
+                name: document.getElementById("username").value,
+                password: document.getElementById("password").value
+            },
+            function(data,status){
+                userIsLoggedIn = data;
+                alert("Data: " + data + "\nStatus: " + status);
+            });
         return false;
     };
 
