@@ -1,8 +1,17 @@
 ﻿/*jslint browser: true*/
+
 window.onload = function () {
     "use strict";
     var userIsLoggedIn = false;
 
+    var source = $("#home").html();
+    var template = Handlebars.compile(source);
+
+    var context = {title: "My New Post", body: "This is my first post!"}
+    var html    = template(context);
+    document.getElementById("test").innerHTML = html;
+    //document.writeln(html);
+/*
     document.getElementById("loginButton").onclick = function () {
         $.post("/login",
             {
@@ -29,5 +38,5 @@ window.onload = function () {
     document.getElementById("createNewSubreddit").onclick = function () {
         alert('Creating new subreddits is currently not supported');
         return false;
-    };
+    }; */
 }

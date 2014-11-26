@@ -21,9 +21,10 @@ app.use(app.router);
 
 
 //Configure the server to use the client-folder:
-app.set('client', __dirname+'/client');
+//app.set('client', __dirname+'/client');
 app.configure(function() {
     app.use(express.static(__dirname + '/client'));
+    app.use(express.static(__dirname + '/bower_components/handlebars'));
 });
 
 
