@@ -19,12 +19,13 @@ app.use(express.cookieParser());
 app.use(express.session({secret: '2234567890QWERTY'}));
 app.use(app.router);
 
-//Configure the server to use jade to display the views:
-app.set('views', __dirname+'/client/views');
-app.set('view engine', 'jade');
+
+//Configure the server to use the client-folder:
+app.set('client', __dirname+'/client');
 app.configure(function() {
-    app.engine('.html', require('jade').__express);
+    app.use(express.static(__dirname + '/client'));
 });
+
 
 function checkAuth(req, res, next) {
     if (typeof(req.session.user_id) == "number") {
@@ -68,15 +69,6 @@ function returnIndex(res, id, array) {
     return res.json(array[id]);
 }
 
-app.get('/', function(req, res) {
-    res.render('home.jade', {
-        title: 'RedditCloneJS',
-        someText: ':D :D :D'
-    });
-  //res.type('text/plain');
-  //res.json(entries);
-});
- 
 app.get('/login', function (req, res) {
     if (typeof (req.session.user_id) == "number") {
         res.json(users[req.session.user_id].name);
