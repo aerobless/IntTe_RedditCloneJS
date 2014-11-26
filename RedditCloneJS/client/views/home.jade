@@ -35,9 +35,9 @@ html(lang='en')
               a(href='/about') About
           form.navbar-form.navbar-right(role='form')
             .form-group
-              input.form-control(type='text', placeholder='Username')
+              input.form-control(type='text', placeholder='Username', id="username")
             .form-group
-              input.form-control(type='password', placeholder='Password')
+              input.form-control(type='password', placeholder='Password', id="password")
             button.btn.btn-success(type='submit', id="loginButton") Sign in
         // /.nav-collapse
       // /.container
@@ -67,9 +67,9 @@ html(lang='en')
         // /span
         #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas(role='navigation')
           .list-group
-            a.list-group-item.active(href='#') Submit new link
-            a.list-group-item(href='#') Submit new text post
-            a.list-group-item(href='#') Create own subreddit
+            a.list-group-item.active(href="", id="submitNewLink") Submit new link
+            a.list-group-item(href="", id="submitNewTextPost") Submit new text post
+            a.list-group-item(href="", id="createNewSubreddit") Create own subreddit
         // /span
       // /row
       hr
