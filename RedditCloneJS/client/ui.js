@@ -22,9 +22,12 @@ window.onload = function () {
 
                 //Test:
                 //alert("Data: " + data + "\nStatus: " + status);
-
-                var context = {username: document.getElementById("username").value}
-                document.getElementById("template").innerHTML = template(context);
+                if(data === true){
+                    var context = {username: document.getElementById("username").value}
+                    document.getElementById("template").innerHTML = template(context);
+                } else {
+                    alert("Your username or password was not valid.");
+                }
             });
         return false;
     };
