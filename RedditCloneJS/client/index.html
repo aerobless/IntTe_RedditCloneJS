@@ -184,9 +184,9 @@
                         {{#each posts}}
                             <div>
                                 <div class="pull-left">
-                                    <span class="glyphicon glyphicon-arrow-up strong h4"></span>
+                                    <a class="glyphicon glyphicon-arrow-up strong h4" id="upvote{{@index}}"></a>
                                     <p class="voteText"><b>{{this.rating.value}}</b></p>
-                                    <span class="glyphicon glyphicon-arrow-down strong h4"></span>
+                                    <a class="glyphicon glyphicon-arrow-down strong h4" id="downvote{{@index}}"></a>
                                 </div>
                                 <div class="linkPadding">
                                     <h3><a class="linkMargin" href="{{this.url}}">{{this.title}}</a></h3>

@@ -13,6 +13,7 @@ var getPosts = function () {
     $.get("/entries", function (data) {
         window.localPostStorage = data;
         renderPage();
+        installVoteListeners();
     });
 };
 
@@ -83,7 +84,7 @@ var loggedInListeners = function () {
             function () {
                 loggedIn = false;
                 username = "world";
-                renderPage();
+                getPosts();
             });
         return false;
     };
@@ -105,14 +106,14 @@ var login = function (username, password) {
 
                 //access global variable via window
                 window.username = username;
-                renderPage();
+                getPosts();
 
                 //Store session cookie
                 $.cookie("username", username);
                 $.cookie("password", password);
 
             } else {
-                window.alert("Your username or password was not valid."+username+" "+password);
+                window.alert("Your username or password was not valid." + username + " " + password);
             }
         });
     return false;
@@ -128,6 +129,7 @@ var loggedoutListeners = function () {
         password = document.getElementById("passwordLogin").value;
 
         login(username, password);
+        getPosts();
     };
 
     document.getElementById("registerButton").onclick = function () {
@@ -204,6 +206,46 @@ var showRegistrationForm = function () {
         }
         return false;
     };
+};
+
+var installVoteListeners = function () {
+    "use strict";
+    window.localPostStorage.forEach(function (value, i) {
+        document.getElementById("upvote" + i).onclick = function () {
+            if (loggedIn) {
+                $.post("/entry/" + i + "/up",
+                    {
+
+                    },
+                    function () {
+                        //Test:
+                        //alert("Data: " + data + "\nStatus: " + status);
+                        //TODO: check whether submitting was sucessful
+
+                        //Renders page with new votes.
+                        getPosts();
+                    });
+            }
+            return false;
+        };
+        document.getElementById("downvote" + i).onclick = function () {
+            if (loggedIn) {
+                $.post("/entry/" + i + "/down",
+                    {
+
+                    },
+                    function () {
+                        //Test:
+                        //alert("Data: " + data + "\nStatus: " + status);
+                        //TODO: check whether submitting was sucessful
+
+                        //Renders page with new votes.
+                        getPosts();
+                    });
+            }
+            return false;
+        };
+    });
 };
 
 window.onload = function () {
