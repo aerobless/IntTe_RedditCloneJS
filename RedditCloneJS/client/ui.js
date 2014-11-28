@@ -29,6 +29,8 @@ var renderPage = function () {
 var alwaysListening = function () {
     document.getElementById("submitNewLink").onclick = function () {
         alert('Submitting new links is currently not supported');
+        //$.cookie("RedditCloneJS",username);
+        alert($.cookie("RedditCloneJS"));
         return false;
     };
 
@@ -60,13 +62,18 @@ var loggedInListeners = function () {
 };
 
 var loggedoutListeners = function () {
+    "use strict";
     alwaysListening();
 
     document.getElementById("loginButton").onclick = function () {
+        var username, password;
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+
         $.post("/login",
             {
-                name: document.getElementById("username").value,
-                password: document.getElementById("password").value
+                name: username,
+                password: password
             },
             function(data,status){
 
@@ -74,8 +81,19 @@ var loggedoutListeners = function () {
                 //alert("Data: " + data + "\nStatus: " + status);
                 if(data === true){
                     loggedIn = true;
-                    username = document.getElementById("username").value;
+
+                    //access global variable via window
+                    window.username = username;
                     renderPage();
+
+                    //Store session cookie
+                    $.cookie("RedditCloneJS",username, password);
+
+                    //TODO get the user-session-id:
+                    $.get("/login",function(data,status){
+                        alert("Data: " + data + "\nStatus: " + status);
+                    });
+
                 } else {
                     alert("Your username or password was not valid.");
                 }
@@ -86,7 +104,11 @@ var loggedoutListeners = function () {
 
 window.onload = function () {
     "use strict";
-    var userIsLoggedIn = false;
 
+    if($.cookie("RedditCloneJS")){
+        alert("resume session possible");
+    }
+
+    var userIsLoggedIn = false;
     var posts = getPosts();
 };

@@ -24,7 +24,7 @@ app.use(app.router);
 //app.set('client', __dirname+'/client');
 app.configure(function() {
     app.use(express.static(__dirname + '/client'));
-    app.use(express.static(__dirname + '/bower_components/handlebars'));
+    app.use(express.static(__dirname + '/bower_components'));
 });
 
 
