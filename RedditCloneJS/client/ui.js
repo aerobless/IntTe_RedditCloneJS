@@ -71,6 +71,7 @@ var alwaysListening = function () {
 };
 
 var loggedInListeners = function () {
+    "use strict";
     alwaysListening();
     document.getElementById("logoutButton").onclick = function () {
         $.removeCookie("username");

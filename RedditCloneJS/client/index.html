@@ -40,7 +40,7 @@
                         {{#if loggedIn}}
                             <!--possible links to be shown only for logged in users-->
                         {{else}}
-                            <li><a href="#about" id="registerButton">Register</a></li>
+                            <!--<li><a href="#about" id="registerButton">Register</a></li>-->
                         {{/if}}
                     </ul>
                     {{#if loggedIn}}
@@ -56,6 +56,7 @@
                                 <input type="password" placeholder="Password" class="form-control" id="passwordLogin">
                             </div>
                             <button type="submit" class="btn btn-success" id="loginButton">Sign in</button>
+                            <a class="btn btn-primary" id="registerButton">Register</a>
                         </form>
                     {{/if}}
                 </div><!-- /.nav-collapse -->
@@ -113,7 +114,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-8 col-sm-9 col-md-9 smallerFont">
-                                                <p>By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</p>
+                                                <p>By clicking <strong class="label label-success">Submit</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</p>
                                             </div>
                                         </div>
 
@@ -179,13 +180,20 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row moveCenter">
                         {{#each posts}}
-                            <div class="col-lg-4">
-                                <h2><a href="{{this.url}}">{{this.title}}</a></h2>
-                                <p>submitted {{this.createTimeDisplay}} by {{this.author}} to /r/global</p>
-                                <p><a class="btn btn-default" href="#" role="button">Comments</a></p>
-                            </div><!--/.col-xs-6.col-lg-4-->
+                            <div>
+                                <div class="pull-left">
+                                    <span class="glyphicon glyphicon-arrow-up strong h4"></span>
+                                    <p class="voteText"><b>{{this.rating.value}}</b></p>
+                                    <span class="glyphicon glyphicon-arrow-down strong h4"></span>
+                                </div>
+                                <div class="linkPadding">
+                                    <h3><a class="linkMargin" href="{{this.url}}">{{this.title}}</a></h3>
+                                    <p>submitted {{this.createTimeDisplay}} by {{this.author}} to /r/global <br> 111 comments share</p>
+                                    <p></p>
+                                </div><!--/.col-xs-6.col-lg-4-->
+                            </div>
                         {{/each}}
                     </div><!--/row-->
                 </div><!--/.col-xs-12.col-sm-9-->

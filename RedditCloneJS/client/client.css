@@ -12,3 +12,28 @@
 .smallerFont {
     font-size: 70%;
 }
+
+.gi-2x{font-size: 1.5em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+.linkMargin {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.linkPadding {
+    padding-left: 40px;
+}
+
+.voteText {
+    padding-top: 0px;
+    text-align: center;
+    font-size: 150%;
+    margin-bottom: 2px;
+}
+
+.moveCenter {
+    padding-left: 80px;
+}
