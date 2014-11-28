@@ -90,10 +90,10 @@ var login = function (username, password) {
 
                 //Store session cookie
                 $.cookie("username", username);
-                $.cookie("password", username);
+                $.cookie("password", password);
 
             } else {
-                window.alert("Your username or password was not valid.");
+                window.alert("Your username or password was not valid."+username+" "+password);
             }
         });
     return false;
@@ -105,15 +105,46 @@ var loggedoutListeners = function () {
 
     document.getElementById("loginButton").onclick = function () {
         var username, password;
-        username = document.getElementById("username").value;
-        password = document.getElementById("password").value;
+        username = document.getElementById("usernameLogin").value;
+        password = document.getElementById("passwordLogin").value;
 
         login(username, password);
     };
 
     document.getElementById("registerButton").onclick = function () {
         $(document.getElementById("welcomeJumbo")).hide();
-        $(document.getElementById("registrationJumbo")).show();
+        showRegistrationForm();
+        return false;
+    };
+};
+
+var showRegistrationForm = function () {
+    "use strict";
+    $(document.getElementById("registrationJumbo")).show();
+    document.getElementById("cancelRegistration").onclick = function () {
+        $(document.getElementById("welcomeJumbo")).hide();
+        return false;
+    };
+    document.getElementById("submitRegistration").onclick = function () {
+        var username, password;
+        username = document.getElementById("usernameRegistration").value;
+        password = document.getElementById("passwordRegistration").value;
+
+        $.post("/register",
+            {
+                name: username,
+                password: password
+            },
+            function (data) {
+                //Test:
+                //alert("Data: " + data + "\nStatus: " + status);
+                if (data === true) {
+                    //Automatically login after successful registration.
+                    login(username, password);
+                } else {
+                    window.alert("Your username or password was not valid.");
+                }
+            });
         return false;
     };
 };
@@ -125,7 +156,7 @@ window.onload = function () {
     $("p").hide();
 
     //Resume session from cookie
-    //TODO: Obviously it is bad to store a password in a cookie.
+    //TODO: Obviously it is #bad to store a password in a cookie.
     if ($.cookie("username")) {
         var username = $.cookie("username"),
             password = $.cookie("password");

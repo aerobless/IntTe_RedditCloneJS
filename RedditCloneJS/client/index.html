@@ -51,10 +51,10 @@
                     {{else}}
                         <form class="navbar-form navbar-right">
                             <div class="form-group">
-                                <input type="text" placeholder="Username" class="form-control" id="username">
+                                <input type="text" placeholder="Username" class="form-control" id="usernameLogin">
                             </div>
                             <div class="form-group">
-                                <input type="password" placeholder="Password" class="form-control" id="password">
+                                <input type="password" placeholder="Password" class="form-control" id="passwordLogin">
                             </div>
                             <button type="submit" class="btn btn-success" id="loginButton">Sign in</button>
                         </form>
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="display_name" id="display_name" class="form-control input-lg smallerFont" placeholder="Display Name" tabindex="3">
+                                            <input type="text" name="display_name" id="usernameRegistration" class="form-control input-lg smallerFont" placeholder="Username" tabindex="3">
                                         </div>
                                         <div class="form-group">
                                             <input type="email" name="email" id="email" class="form-control input-lg smallerFont" placeholder="Email Address" tabindex="4">
@@ -103,12 +103,12 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <input type="password" name="password" id="password" class="form-control input-lg smallerFont" placeholder="Password" tabindex="5">
+                                                    <input type="password" name="password" id="passwordRegistration" class="form-control input-lg smallerFont" placeholder="Password" tabindex="5">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg smallerFont" placeholder="Confirm Password" tabindex="6">
+                                                    <input type="password" name="password_confirmation" id="passwordConfirmationRegistration" class="form-control input-lg smallerFont" placeholder="Confirm Password" tabindex="6">
                                                 </div>
                                             </div>
                                         </div>
@@ -120,8 +120,11 @@
 
                                         <hr class="colorgraph">
                                         <div class="row">
-                                            <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
-                                            <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-danger btn-block btn-lg">Cancel</a></div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <a href="#" class="btn btn-success btn-block btn-lg" tabindex="7" id="submitRegistration">Submit</a>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <a href="#" class="btn btn-danger btn-block btn-lg" id="cancelRegistration">Cancel</a></div>
                                         </div>
                                     </form>
                                 </div>
