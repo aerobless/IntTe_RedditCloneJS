@@ -10,7 +10,7 @@ var localPostStorage,
 
 var getPosts = function () {
     "use strict";
-    $.get("/entries", function (data, status) {
+    $.get("/entries", function (data) {
         window.localPostStorage = data;
         renderPage();
     });
@@ -24,6 +24,9 @@ var renderPage = function () {
 
     document.getElementById("template").innerHTML = template(context);
 
+    //Hiding registrationJumbo by default:
+    $(document.getElementById("registrationJumbo")).hide();
+
     if (loggedIn) {
         loggedInListeners();
     } else {
@@ -32,10 +35,9 @@ var renderPage = function () {
 };
 
 var alwaysListening = function () {
+    "use strict";
     document.getElementById("submitNewLink").onclick = function () {
         window.alert('Submitting new links is currently not supported');
-        //$.cookie("RedditCloneJS",username);
-        window.alert($.cookie("RedditCloneJS"));
         return false;
     };
 
@@ -59,7 +61,7 @@ var loggedInListeners = function () {
             {
                 //TODO properly! DOESN'T WORK LIKE THIS.
             },
-            function (data, status) {
+            function () {
                 loggedIn = false;
                 username = "world";
                 renderPage();
@@ -75,7 +77,7 @@ var login = function (username, password) {
             name: username,
             password: password
         },
-        function (data, status) {
+        function (data) {
 
             //Test:
             //alert("Data: " + data + "\nStatus: " + status);
@@ -91,7 +93,7 @@ var login = function (username, password) {
                 $.cookie("password", username);
 
             } else {
-                alert("Your username or password was not valid.");
+                window.alert("Your username or password was not valid.");
             }
         });
     return false;
@@ -108,10 +110,19 @@ var loggedoutListeners = function () {
 
         login(username, password);
     };
+
+    document.getElementById("registerButton").onclick = function () {
+        $(document.getElementById("welcomeJumbo")).hide();
+        $(document.getElementById("registrationJumbo")).show();
+        return false;
+    };
 };
 
 window.onload = function () {
     "use strict";
+
+    //Hide Registration-Jumbo
+    $("p").hide();
 
     //Resume session from cookie
     //TODO: Obviously it is bad to store a password in a cookie.
@@ -121,6 +132,5 @@ window.onload = function () {
         login(username, password);
     }
 
-    var userIsLoggedIn = false,
-        posts = getPosts();
+    getPosts();
 };
