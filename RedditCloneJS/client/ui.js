@@ -25,7 +25,8 @@ var renderPage = function () {
     document.getElementById("template").innerHTML = template(context);
 
     //Hiding registrationJumbo by default:
-    $(document.getElementById("registrationJumbo")).hide();
+    hideAllJumbos();
+    $(document.getElementById("welcomeJumbo")).show();
 
     if (loggedIn) {
         loggedInListeners();
@@ -34,10 +35,24 @@ var renderPage = function () {
     }
 };
 
+var hideAllJumbos = function () {
+    "use strict";
+    $(document.getElementById("registrationJumbo")).hide();
+    $(document.getElementById("welcomeJumbo")).hide();
+    $(document.getElementById("postJumbo")).hide();
+};
+
 var alwaysListening = function () {
     "use strict";
     document.getElementById("submitNewLink").onclick = function () {
-        window.alert('Submitting new links is currently not supported');
+        hideAllJumbos();
+        $(document.getElementById("postJumbo")).show();
+        return false;
+    };
+
+    document.getElementById("logoButton").onclick = function () {
+        hideAllJumbos();
+        $(document.getElementById("welcomeJumbo")).show();
         return false;
     };
 
@@ -119,11 +134,11 @@ var loggedoutListeners = function () {
 
 var showRegistrationForm = function () {
     "use strict";
-    $(document.getElementById("registrationJumbo")).toggle();
-    $(document.getElementById("welcomeJumbo")).toggle();
+    hideAllJumbos();
+    $(document.getElementById("registrationJumbo")).show();
 
     document.getElementById("cancelRegistration").onclick = function () {
-        $(document.getElementById("registrationJumbo")).hide();
+        hideAllJumbos();
         $(document.getElementById("welcomeJumbo")).show();
         return false;
     };
@@ -162,7 +177,8 @@ window.onload = function () {
     "use strict";
 
     //Hide Registration-Jumbo
-    $("p").hide();
+    hideAllJumbos();
+    $(document.getElementById("welcomeJumbo")).show();
 
     //Resume session from cookie
     //TODO: Obviously it is #bad to store a password in a cookie.

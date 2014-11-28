@@ -9,7 +9,6 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <script src="libs/doT/doT.js"></script>
-    <!--<script src="libs/jquery-2.0.3.js"></script>-->
     <script src="jquery/dist/jquery.js"></script>
     <script src="jquery.cookie/jquery.cookie.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -33,11 +32,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">RedditCloneJS</a>
+                    <a class="navbar-brand" href="" id="logoButton">RedditCloneJS</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <!--<li class="active"><a href="#">Home</a></li>-->
                         {{#if loggedIn}}
                             <!--possible links to be shown only for logged in users-->
                         {{else}}
@@ -139,7 +138,13 @@
                                             <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                            <p>Please be aware that RedditCloneJS is <b>only a demo product and does not have any sort of security</b>. Your account data is explicitly unsafe. See the list below to find out what we're missing:</p>
+                                            <ul>
+                                                <li>RedditCloneJS stores your passwords in clear text. In fact they're publicly available.</li>
+                                                <li>RedditCloneJS does not permanently store your valuable content.</li>
+                                                <li>RedditCloneJS will give you a headache after prolonged use.</li>
+                                            </ul>
+                                            <p>Thank you for using RedditCloneJS</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
@@ -149,12 +154,37 @@
                             </div><!-- /.modal -->
                         </div>
                     </div>
+
+
+                    <div class="jumbotron" id="postJumbo">
+                        <div class="container">
+                            <h1>Post a link</h1>
+                            <div class="col-md-7">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Title">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="URL">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-8"></div>
+                                        <div class="col-xs-6 col-md-4">
+                                            <a href="#" class="btn btn-success btn-block btn-lg pull-right" id="submitRegistration">Submit</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
                         {{#each posts}}
                             <div class="col-lg-4">
-                                <h2>{{this.title}}</h2>
-                                <p>submitted 5 hours ago by _theseacucumber to /r/funny</p>
-                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                                <h2><a href="{{this.url}}">{{this.title}}</a></h2>
+                                <p>submitted {{this.createTimeDisplay}} by {{this.author}} to /r/global</p>
+                                <p><a class="btn btn-default" href="#" role="button">Comments</a></p>
                             </div><!--/.col-xs-6.col-lg-4-->
                         {{/each}}
                     </div><!--/row-->
