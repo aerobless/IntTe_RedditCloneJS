@@ -1,25 +1,30 @@
 ﻿/*jslint browser: true*/
+/*global $:false */
+/*global Handlebars:false */
+/*jshint latedef:true */
+/*jslint todo: true */
 
-var localPostStorage;
-var username = "world";
-var loggedIn = false;
+var localPostStorage,
+    username = "world",
+    loggedIn = false;
 
 var getPosts = function () {
-    var posts = null;
-    $.get("/entries",function(data,status){
-        localPostStorage = data;
+    "use strict";
+    $.get("/entries", function (data, status) {
+        window.localPostStorage = data;
         renderPage();
     });
 };
 
 var renderPage = function () {
-    var source = $("#home").html();
-    var template = Handlebars.compile(source);
+    "use strict";
+    var source = $("#home").html(),
+        template = Handlebars.compile(source),
+        context = {username: username, loggedIn: loggedIn, posts: localPostStorage};
 
-    var context = {username: username, loggedIn: loggedIn, posts: localPostStorage};
     document.getElementById("template").innerHTML = template(context);
 
-    if(loggedIn) {
+    if (loggedIn) {
         loggedInListeners();
     } else {
         loggedoutListeners();
@@ -28,19 +33,19 @@ var renderPage = function () {
 
 var alwaysListening = function () {
     document.getElementById("submitNewLink").onclick = function () {
-        alert('Submitting new links is currently not supported');
+        window.alert('Submitting new links is currently not supported');
         //$.cookie("RedditCloneJS",username);
-        alert($.cookie("RedditCloneJS"));
+        window.alert($.cookie("RedditCloneJS"));
         return false;
     };
 
     document.getElementById("submitNewTextPost").onclick = function () {
-        alert('Submitting new text posts is currently not supported');
+        window.alert('Submitting new text posts is currently not supported');
         return false;
     };
 
     document.getElementById("createNewSubreddit").onclick = function () {
-        alert('Creating new subreddits is currently not supported');
+        window.alert('Creating new subreddits is currently not supported');
         return false;
     };
 };
@@ -48,17 +53,48 @@ var alwaysListening = function () {
 var loggedInListeners = function () {
     alwaysListening();
     document.getElementById("logoutButton").onclick = function () {
+        $.removeCookie("username");
+        $.removeCookie("password");
         $.post("/logout",
             {
                 //TODO properly! DOESN'T WORK LIKE THIS.
             },
-            function(data,status){
+            function (data, status) {
                 loggedIn = false;
                 username = "world";
                 renderPage();
             });
         return false;
     };
+};
+
+var login = function (username, password) {
+    "use strict";
+    $.post("/login",
+        {
+            name: username,
+            password: password
+        },
+        function (data, status) {
+
+            //Test:
+            //alert("Data: " + data + "\nStatus: " + status);
+            if (data === true) {
+                loggedIn = true;
+
+                //access global variable via window
+                window.username = username;
+                renderPage();
+
+                //Store session cookie
+                $.cookie("username", username);
+                $.cookie("password", username);
+
+            } else {
+                alert("Your username or password was not valid.");
+            }
+        });
+    return false;
 };
 
 var loggedoutListeners = function () {
@@ -70,45 +106,21 @@ var loggedoutListeners = function () {
         username = document.getElementById("username").value;
         password = document.getElementById("password").value;
 
-        $.post("/login",
-            {
-                name: username,
-                password: password
-            },
-            function(data,status){
-
-                //Test:
-                //alert("Data: " + data + "\nStatus: " + status);
-                if(data === true){
-                    loggedIn = true;
-
-                    //access global variable via window
-                    window.username = username;
-                    renderPage();
-
-                    //Store session cookie
-                    $.cookie("RedditCloneJS",username, password);
-
-                    //TODO get the user-session-id:
-                    $.get("/login",function(data,status){
-                        alert("Data: " + data + "\nStatus: " + status);
-                    });
-
-                } else {
-                    alert("Your username or password was not valid.");
-                }
-            });
-        return false;
+        login(username, password);
     };
 };
 
 window.onload = function () {
     "use strict";
 
-    if($.cookie("RedditCloneJS")){
-        alert("resume session possible");
+    //Resume session from cookie
+    //TODO: Obviously it is bad to store a password in a cookie.
+    if ($.cookie("username")) {
+        var username = $.cookie("username"),
+            password = $.cookie("password");
+        login(username, password);
     }
 
-    var userIsLoggedIn = false;
-    var posts = getPosts();
+    var userIsLoggedIn = false,
+        posts = getPosts();
 };
