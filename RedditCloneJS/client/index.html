@@ -38,7 +38,11 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about" id="registerButton">Register</a></li>
+                        {{#if loggedIn}}
+                            <!--possible links to be shown only for logged in users-->
+                        {{else}}
+                            <li><a href="#about" id="registerButton">Register</a></li>
+                        {{/if}}
                     </ul>
                     {{#if loggedIn}}
                         <form class="navbar-form navbar-right">
@@ -116,8 +120,8 @@
 
                                         <hr class="colorgraph">
                                         <div class="row">
-                                            <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                                            <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+                                            <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
+                                            <div class="col-xs-12 col-md-6"><a href="#" class="btn btn-danger btn-block btn-lg">Cancel</a></div>
                                         </div>
                                     </form>
                                 </div>
