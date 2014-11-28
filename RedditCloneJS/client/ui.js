@@ -44,15 +44,18 @@ var hideAllJumbos = function () {
 
 var alwaysListening = function () {
     "use strict";
-    document.getElementById("submitNewLink").onclick = function () {
-        hideAllJumbos();
-        $(document.getElementById("postJumbo")).show();
-        return false;
-    };
-
     document.getElementById("logoButton").onclick = function () {
         hideAllJumbos();
         $(document.getElementById("welcomeJumbo")).show();
+        return false;
+    };
+
+    document.getElementById("submitNewLink").onclick = function () {
+        if (loggedIn) {
+            showPostForm();
+        } else {
+            window.alert("You need to be logged in to submit a new post.");
+        }
         return false;
     };
 
@@ -128,6 +131,35 @@ var loggedoutListeners = function () {
 
     document.getElementById("registerButton").onclick = function () {
         showRegistrationForm();
+        return false;
+    };
+};
+
+var showPostForm = function () {
+    "use strict";
+    hideAllJumbos();
+    $(document.getElementById("postJumbo")).show();
+
+    document.getElementById("submitPost").onclick = function () {
+        var postTitle = document.getElementById("postTitle").value,
+            postURL = document.getElementById("postTitle").value;
+
+        //TODO: there really should be some server-side authentication.. currently anyone can post something, it's a heaven for spammers.
+        //TODO: but this is a server issue, so I'm going to leave it for now.
+        $.post("/entry",
+            {
+                title: postTitle,
+                url: postURL,
+                name: username
+            },
+            function () {
+                //Test:
+                //alert("Data: " + data + "\nStatus: " + status);
+                //TODO: check whether submitting was sucessful
+
+                //Renders page with new posts.
+                getPosts();
+            });
         return false;
     };
 };
