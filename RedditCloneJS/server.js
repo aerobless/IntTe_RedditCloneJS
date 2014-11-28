@@ -93,9 +93,15 @@ app.get('/login', function (req, res) {
 });
 
  app.post('/register', function(req, res) {
+     "use strict";
      var post = req.body;
-     
-     if (typeof(post.name) != "string" || typeof(post.password) != "string") {
+
+     if (post.name === "" || post.password === "") {
+         res.json(false);
+         return;
+     }
+
+     if (typeof(post.name) !== "string" || typeof(post.password) !== "string") {
          res.json(false);
          return;
      }

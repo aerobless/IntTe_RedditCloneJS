@@ -129,25 +129,31 @@ var showRegistrationForm = function () {
     };
 
     document.getElementById("submitRegistration").onclick = function () {
-        var username, password;
-        username = document.getElementById("usernameRegistration").value;
-        password = document.getElementById("passwordRegistration").value;
+        var username = document.getElementById("usernameRegistration").value,
+            password = document.getElementById("passwordRegistration").value,
+            passwordConfirm = document.getElementById("passwordConfirmationRegistration").value;
 
-        $.post("/register",
-            {
-                name: username,
-                password: password
-            },
-            function (data) {
-                //Test:
-                //alert("Data: " + data + "\nStatus: " + status);
-                if (data === true) {
-                    //Automatically login after successful registration.
-                    login(username, password);
-                } else {
-                    window.alert("Your username or password was not valid.");
-                }
-            });
+        //Client-side validation:
+        //firstname, lastname & email are being ignored for this demo.
+        if (password === passwordConfirm) {
+            $.post("/register",
+                {
+                    name: username,
+                    password: password
+                },
+                function (data) {
+                    //Test:
+                    //alert("Data: " + data + "\nStatus: " + status);
+                    if (data === true) {
+                        //Automatically login after successful registration.
+                        login(username, password);
+                    } else {
+                        window.alert("Your username or password was not valid.");
+                    }
+                });
+        } else {
+            window.alert("Password doesn't match confirmation password.");
+        }
         return false;
     };
 };
