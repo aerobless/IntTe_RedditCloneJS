@@ -112,7 +112,6 @@ var loggedoutListeners = function () {
     };
 
     document.getElementById("registerButton").onclick = function () {
-        $(document.getElementById("welcomeJumbo")).hide();
         showRegistrationForm();
         return false;
     };
@@ -120,11 +119,15 @@ var loggedoutListeners = function () {
 
 var showRegistrationForm = function () {
     "use strict";
-    $(document.getElementById("registrationJumbo")).show();
+    $(document.getElementById("registrationJumbo")).toggle();
+    $(document.getElementById("welcomeJumbo")).toggle();
+
     document.getElementById("cancelRegistration").onclick = function () {
-        $(document.getElementById("welcomeJumbo")).hide();
+        $(document.getElementById("registrationJumbo")).hide();
+        $(document.getElementById("welcomeJumbo")).show();
         return false;
     };
+
     document.getElementById("submitRegistration").onclick = function () {
         var username, password;
         username = document.getElementById("usernameRegistration").value;
