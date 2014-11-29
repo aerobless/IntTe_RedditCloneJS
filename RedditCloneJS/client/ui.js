@@ -283,6 +283,51 @@ var installVoteListeners = function () {
             }
             return false;
         };
+
+        //Iterate over all comment per post:
+        value.comments.forEach(function (value, i) {
+            //Comment Upvote Listener:
+            document.getElementById("upvoteComment" + value.id).onclick = function () {
+                if (loggedIn) {
+                    $.post("/comment/" + value.id + "/up",
+                        {
+
+                        },
+                        function () {
+                            //Test:
+                            //alert("Data: " + data + "\nStatus: " + status);
+                            //TODO: check whether submitting was successful
+
+                            //Renders page with new votes.
+                            getPosts();
+                        });
+                }
+                return false;
+            };
+        });
+
+
+        //Comment Downvote Listener:
+        value.comments.forEach(function (value, i) {
+            //Comment Upvote Listener:
+            document.getElementById("downvoteComment" + value.id).onclick = function () {
+                if (loggedIn) {
+                    $.post("/comment/" + value.id + "/down",
+                        {
+
+                        },
+                        function () {
+                            //Test:
+                            //alert("Data: " + data + "\nStatus: " + status);
+                            //TODO: check whether submitting was successful
+
+                            //Renders page with new votes.
+                            getPosts();
+                        });
+                }
+                return false;
+            };
+        });
     });
 };
 

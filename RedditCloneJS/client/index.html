@@ -196,9 +196,10 @@
                                     {{#each this.comments}}
                                         <div class="commentUnit">
                                             <div class="pull-left">
-                                                <a class="glyphicon glyphicon-arrow-up ulOff" id="upvote{{@index}}"></a>
+                                                <!-- access parent handler via {{@../index}}-->
+                                                <a class="glyphicon glyphicon-arrow-up ulOff" id="upvoteComment{{this.id}}"></a>
                                                 <p class="commentVoteText"><b>{{this.rating.value}}</b></p>
-                                                <a class="glyphicon glyphicon-arrow-down ulOff" id="downvote{{@index}}"></a>
+                                                <a class="glyphicon glyphicon-arrow-down ulOff" id="downvoteComment{{this.id}}"></a>
                                             </div>
                                             <div class="commentPadding">
                                                 <p class="commentText">{{this.text}}</p>
