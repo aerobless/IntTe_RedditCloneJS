@@ -27,6 +27,7 @@ var renderPage = function () {
 
     //Hiding registrationJumbo by default:
     hideAllJumbos();
+    $(document.getElementById("refreshAlert")).hide();
     $(document.getElementById("welcomeJumbo")).show();
 
     if (loggedIn) {
@@ -67,6 +68,11 @@ var alwaysListening = function () {
 
     document.getElementById("createNewSubreddit").onclick = function () {
         window.alert('Creating new subreddits is currently not supported');
+        return false;
+    };
+
+    document.getElementById("refreshAlert").onclick = function () {
+        getPosts();
         return false;
     };
 };
@@ -334,6 +340,14 @@ var installVoteListeners = function () {
 window.onload = function () {
     "use strict";
 
+    //Setup socket.io
+    var socket = io();
+    socket.on('message', function(msg){
+        if (msg.action === "AddLink") {
+            $(document.getElementById("refreshAlert")).show();
+        }
+    });
+
     //Hide Registration-Jumbo
     hideAllJumbos();
     $(document.getElementById("welcomeJumbo")).show();
@@ -345,6 +359,5 @@ window.onload = function () {
             password = $.cookie("password");
         login(username, password);
     }
-
     getPosts();
 };
