@@ -158,7 +158,7 @@ var showPostForm = function () {
             function () {
                 //Test:
                 //alert("Data: " + data + "\nStatus: " + status);
-                //TODO: check whether submitting was sucessful
+                //TODO: check whether submitting was successful
 
                 //Renders page with new posts.
                 getPosts();
@@ -222,7 +222,7 @@ var installVoteListeners = function () {
                     function () {
                         //Test:
                         //alert("Data: " + data + "\nStatus: " + status);
-                        //TODO: check whether submitting was sucessful
+                        //TODO: check whether submitting was successful
 
                         //Renders page with new votes.
                         getPosts();
@@ -241,7 +241,7 @@ var installVoteListeners = function () {
                     function () {
                         //Test:
                         //alert("Data: " + data + "\nStatus: " + status);
-                        //TODO: check whether submitting was sucessful
+                        //TODO: check whether submitting was successful
 
                         //Renders page with new votes.
                         getPosts();
@@ -257,6 +257,27 @@ var installVoteListeners = function () {
         document.getElementById("comment" + i).onclick = function () {
             if (loggedIn) {
                 $(document.getElementById("commentForm" + i)).toggle();
+            } else {
+                window.alert("Please login first.");
+            }
+            return false;
+        };
+
+        //Entry Comment Submit Listener:
+        document.getElementById("submitComment" + i).onclick = function () {
+            if (loggedIn) {
+                $.post("/entry/" + i + "/comment",
+                    {
+                        text: document.getElementById("commentFormField" + i).value
+                    },
+                    function () {
+                        //Test:
+                        //alert("Data: " + data + "\nStatus: " + status);
+                        //TODO: check whether submitting was successful
+
+                        //Renders page with new votes.
+                        getPosts();
+                    });
             } else {
                 window.alert("Please login first.");
             }
