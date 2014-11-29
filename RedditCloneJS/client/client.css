@@ -27,6 +27,10 @@
     padding-left: 40px;
 }
 
+.commentPadding {
+    padding-left: 20px;
+}
+
 .voteText {
     padding-top: 0px;
     text-align: center;
@@ -34,6 +38,24 @@
     margin-bottom: 2px;
 }
 
+.commentVoteText {
+    padding-top: 0px;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.commentText {
+    padding-top: 0px;
+    font-size: 110%;
+}
+
+
+
 .moveCenter {
     padding-left: 80px;
+}
+
+.ulOff a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }

@@ -184,19 +184,33 @@
                         {{#each posts}}
                             <div>
                                 <div class="pull-left">
-                                    <a class="glyphicon glyphicon-arrow-up strong h4" id="upvote{{@index}}"></a>
+                                    <a class="glyphicon glyphicon-arrow-up strong h4 ulOff" id="upvote{{@index}}"></a>
                                     <p class="voteText"><b>{{this.rating.value}}</b></p>
-                                    <a class="glyphicon glyphicon-arrow-down strong h4" id="downvote{{@index}}"></a>
+                                    <a class="glyphicon glyphicon-arrow-down strong h4 ulOff" id="downvote{{@index}}"></a>
                                 </div>
                                 <div class="linkPadding">
                                     <h3><a class="linkMargin" href="{{this.url}}">{{this.title}}</a></h3>
                                     <p>submitted {{this.createTimeDisplay}} by {{this.author}} to /r/global <br> 111 comments share</p>
+                                    {{#each this.comments}}
+                                        <div>
+                                            <div class="pull-left">
+                                                <a class="glyphicon glyphicon-arrow-up ulOff" id="upvote{{@index}}"></a>
+                                                <p class="commentVoteText"><b>{{this.rating.value}}</b></p>
+                                                <a class="glyphicon glyphicon-arrow-down ulOff" id="downvote{{@index}}"></a>
+                                            </div>
+                                            <div class="commentPadding">
+                                                <p class="commentText">{{this.text}}</p>
+                                                <p class=""> says <b>{{this.author}}</b> on <b>{{this.createTimeDisplay}}</b></p>
+                                            </div>
+                                        </div>
+                                    {{/each}}
                                     <p></p>
                                 </div><!--/.col-xs-6.col-lg-4-->
                             </div>
                         {{/each}}
                     </div><!--/row-->
                 </div><!--/.col-xs-12.col-sm-9-->
+
 
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
                     <div class="list-group">
