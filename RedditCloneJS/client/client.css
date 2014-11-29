@@ -24,11 +24,15 @@
 }
 
 .linkPadding {
-    padding-left: 40px;
+    padding-left: 30px;
 }
 
 .commentPadding {
     padding-left: 20px;
+}
+
+.commentUnit {
+    padding-bottom: 20px;
 }
 
 .voteText {
@@ -46,10 +50,14 @@
 
 .commentText {
     padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
     font-size: 110%;
 }
 
-
+.infoGrey {
+    color: #95a5a6;
+}
 
 .moveCenter {
     padding-left: 80px;

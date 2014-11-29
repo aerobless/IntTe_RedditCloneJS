@@ -44,9 +44,12 @@ var comments = [];
 entries.push(new Link(entries.length, "Google", "Theo", "http://www.google.com"));
 entries.push(new Link(entries.length, "Bing", "Marco", "http://www.bing.com"));
 entries.push(new Link(entries.length, "Marco Duuuuuuden Leutenegger", "Daniela", "http://www.bing.com"));
-var comment = new Comment(0, "TestComment", "Author");
-comments.push(comment);
-entries[0].comments.push(comment);
+var comment1 = new Comment(0, "Google is really the best search engine ever.", "Googler");
+var comment2 = new Comment(1, "Of course it is.", "Sergey Brin");
+comments.push(comment1);
+comments.push(comment2);
+entries[0].comments.push(comment1);
+entries[0].comments.push(comment2);
 
 //default user
 users.push(new User(users.length, "a", "a"));

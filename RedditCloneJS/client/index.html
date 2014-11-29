@@ -190,9 +190,9 @@
                                 </div>
                                 <div class="linkPadding">
                                     <h3><a class="linkMargin" href="{{this.url}}">{{this.title}}</a></h3>
-                                    <p>submitted {{this.createTimeDisplay}} by {{this.author}} to /r/global <br> 111 comments share</p>
+                                    <p class="infoGrey">submitted by <b>{{this.author}}</b> on <b>{{this.createTimeDisplay}}</b> to /r/global <br> 111 comments share</p>
                                     {{#each this.comments}}
-                                        <div>
+                                        <div class="commentUnit">
                                             <div class="pull-left">
                                                 <a class="glyphicon glyphicon-arrow-up ulOff" id="upvote{{@index}}"></a>
                                                 <p class="commentVoteText"><b>{{this.rating.value}}</b></p>
@@ -200,7 +200,7 @@
                                             </div>
                                             <div class="commentPadding">
                                                 <p class="commentText">{{this.text}}</p>
-                                                <p class=""> says <b>{{this.author}}</b> on <b>{{this.createTimeDisplay}}</b></p>
+                                                <p class="commentInfo infoGrey"> says <b>{{this.author}}</b> on <b>{{this.createTimeDisplay}}</b></p>
                                             </div>
                                         </div>
                                     {{/each}}
