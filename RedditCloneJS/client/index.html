@@ -179,7 +179,7 @@
                         </div>
                     </div>
 
-
+                    <!-- POST ITERATION START -->
                     <div class="row moveCenter">
                         {{#each posts}}
                             <div>
@@ -190,7 +190,9 @@
                                 </div>
                                 <div class="linkPadding">
                                     <h3><a class="linkMargin" href="{{this.url}}">{{this.title}}</a></h3>
-                                    <p class="infoGrey">submitted by <b>{{this.author}}</b> on <b>{{this.createTimeDisplay}}</b> to /r/global <br> 111 comments share</p>
+                                    <p class="infoGrey">submitted by <b>{{this.author}}</b> on <b>{{this.createTimeDisplay}}</b> to /r/global <br> <a href="" id="comment{{@index}}">[comment]</a> &nbsp; <a id="share{{@index}}">[share]</a></p>
+
+                                    <!-- COMMENT ITERATION START-->
                                     {{#each this.comments}}
                                         <div class="commentUnit">
                                             <div class="pull-left">
@@ -204,12 +206,34 @@
                                             </div>
                                         </div>
                                     {{/each}}
+                                    <!-- COMMENT ITERATION END-->
+
+                                    <!-- ADD COMMENT FORM START -->
+                                    <div class="container" id="commentForm{{@index}}">
+                                        <h3>Add comment</h3>
+                                        <div class="col-md-5">
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" placeholder="type your comment.." id="commentFormField{{@index}}"></textarea>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-8"></div>
+                                                    <div class="col-xs-6 col-md-4">
+                                                        <a href="#" class="btn btn-success btn-block btn-lg pull-right" id="submitComment{{@index}}">Submit</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- ADD COMMENT FORM END -->
+
                                     <p></p>
                                 </div><!--/.col-xs-6.col-lg-4-->
                             </div>
                         {{/each}}
                     </div><!--/row-->
                 </div><!--/.col-xs-12.col-sm-9-->
+                <!-- POST ITERATION END -->
 
 
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">

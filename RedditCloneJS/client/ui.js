@@ -211,6 +211,8 @@ var showRegistrationForm = function () {
 var installVoteListeners = function () {
     "use strict";
     window.localPostStorage.forEach(function (value, i) {
+
+        //Entry Upvote Listener:
         document.getElementById("upvote" + i).onclick = function () {
             if (loggedIn) {
                 $.post("/entry/" + i + "/up",
@@ -228,6 +230,8 @@ var installVoteListeners = function () {
             }
             return false;
         };
+
+        //Entry Downvote Listener:
         document.getElementById("downvote" + i).onclick = function () {
             if (loggedIn) {
                 $.post("/entry/" + i + "/down",
@@ -242,6 +246,19 @@ var installVoteListeners = function () {
                         //Renders page with new votes.
                         getPosts();
                     });
+            }
+            return false;
+        };
+
+        //Entry Comment Form inital invisibility
+        $(document.getElementById("commentForm" + i)).hide();
+
+        //Entry Comment Listener:
+        document.getElementById("comment" + i).onclick = function () {
+            if (loggedIn) {
+                $(document.getElementById("commentForm" + i)).toggle();
+            } else {
+                window.alert("Please login first.");
             }
             return false;
         };
