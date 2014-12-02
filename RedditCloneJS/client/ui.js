@@ -85,10 +85,7 @@ var loggedInListeners = function () {
     document.getElementById("logoutButton").onclick = function () {
         $.removeCookie("username");
         $.removeCookie("password");
-        $.post("/logout",
-            {
-                //TODO properly! DOESN'T WORK LIKE THIS.
-            },
+        $.post("/logout", {},
             function () {
                 loggedIn = false;
                 username = "world";
@@ -107,8 +104,6 @@ var login = function (username, password) {
         },
         function (data) {
 
-            //Test:
-            //alert("Data: " + data + "\nStatus: " + status);
             if (data === true) {
                 loggedIn = true;
 
@@ -155,8 +150,6 @@ var showPostForm = function () {
         var postTitle = document.getElementById("postTitle").value,
             postURL = document.getElementById("postTitle").value;
 
-        //TODO: there really should be some server-side authentication.. currently anyone can post something, it's a heaven for spammers.
-        //TODO: but this is a server issue, so I'm going to leave it for now.
         $.post("/entry",
             {
                 title: postTitle,
@@ -164,11 +157,6 @@ var showPostForm = function () {
                 name: username
             },
             function () {
-                //Test:
-                //alert("Data: " + data + "\nStatus: " + status);
-                //TODO: check whether submitting was successful
-
-                //Renders page with new posts.
                 getPosts();
             });
         return false;
@@ -220,23 +208,11 @@ var installVoteListeners = function () {
     "use strict";
     window.localPostStorage.forEach(function (value, i) {
 
-        //theArray[i] = value.comments.sort(compare);
-
-       // alert(value.comments);
-
         //Entry Upvote Listener:
         document.getElementById("upvote" + i).onclick = function () {
             if (loggedIn) {
-                $.post("/entry/" + i + "/up",
-                    {
-
-                    },
+                $.post("/entry/" + i + "/up", {},
                     function () {
-                        //Test:
-                        //alert("Data: " + data + "\nStatus: " + status);
-                        //TODO: check whether submitting was successful
-
-                        //Renders page with new votes.
                         getPosts();
                     });
             }
@@ -246,16 +222,8 @@ var installVoteListeners = function () {
         //Entry Downvote Listener:
         document.getElementById("downvote" + i).onclick = function () {
             if (loggedIn) {
-                $.post("/entry/" + i + "/down",
-                    {
-
-                    },
+                $.post("/entry/" + i + "/down", {},
                     function () {
-                        //Test:
-                        //alert("Data: " + data + "\nStatus: " + status);
-                        //TODO: check whether submitting was successful
-
-                        //Renders page with new votes.
                         getPosts();
                     });
             }
@@ -283,11 +251,6 @@ var installVoteListeners = function () {
                         text: document.getElementById("commentFormField" + i).value
                     },
                     function () {
-                        //Test:
-                        //alert("Data: " + data + "\nStatus: " + status);
-                        //TODO: check whether submitting was successful
-
-                        //Renders page with new votes.
                         getPosts();
                     });
             } else {
@@ -301,16 +264,8 @@ var installVoteListeners = function () {
             //Comment Upvote Listener:
             document.getElementById("upvoteComment" + value.id).onclick = function () {
                 if (loggedIn) {
-                    $.post("/comment/" + value.id + "/up",
-                        {
-
-                        },
+                    $.post("/comment/" + value.id + "/up", {},
                         function () {
-                            //Test:
-                            //alert("Data: " + data + "\nStatus: " + status);
-                            //TODO: check whether submitting was successful
-
-                            //Renders page with new votes.
                             getPosts();
                         });
                 }
@@ -320,16 +275,8 @@ var installVoteListeners = function () {
             //Comment Upvote Listener:
             document.getElementById("downvoteComment" + value.id).onclick = function () {
                 if (loggedIn) {
-                    $.post("/comment/" + value.id + "/down",
-                        {
-
-                        },
+                    $.post("/comment/" + value.id + "/down", {},
                         function () {
-                            //Test:
-                            //alert("Data: " + data + "\nStatus: " + status);
-                            //TODO: check whether submitting was successful
-
-                            //Renders page with new votes.
                             getPosts();
                         });
                 }
