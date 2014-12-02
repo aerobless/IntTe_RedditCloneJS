@@ -22,6 +22,12 @@
     <!-- Custom styles for this template -->
     <link href="libs/bootstrap/css/offcanvas.css" rel="stylesheet">
 
+    <script id="alertTemplate" type="text/x-handlebars-template">
+        <div class="alert alert-success" role="alert" id="refreshAlert">
+            <p>{{alertText}} &nbsp; <a href="" class="alert-link">Refresh now</a></p>
+        </div>
+    </script>
+
     <script id="home" type="text/x-handlebars-template">
         <nav class="navbar navbar-fixed-top navbar-inverse">
             <div class="container">
@@ -180,9 +186,7 @@
                     </div>
 
                     <!-- INFO & ALERTS -->
-                    <div class="alert alert-success" role="alert" id="refreshAlert">
-                        <p>New post(s) have been added. &nbsp; <a href="" class="alert-link">Refresh now</a></p>
-                    </div>
+                    <div id="refreshAlert"></div>
 
                     <!-- POST ITERATION START -->
                     <div class="row moveCenter">

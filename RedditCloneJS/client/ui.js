@@ -337,6 +337,15 @@ var installVoteListeners = function () {
     });
 };
 
+var showAlert = function (text) {
+    "use strict";
+    var source = $("#alertTemplate").html(),
+        template = Handlebars.compile(source),
+        context = {alertText: text};
+    document.getElementById("refreshAlert").innerHTML = template(context);
+    $(document.getElementById("refreshAlert")).show();
+}
+
 window.onload = function () {
     "use strict";
 
@@ -344,7 +353,11 @@ window.onload = function () {
     var socket = io();
     socket.on('message', function(msg){
         if (msg.action === "AddLink") {
-            $(document.getElementById("refreshAlert")).show();
+            showAlert("A new link has been published.");
+        } else if (msg.action === "Rated") {
+            showAlert("A link has been rated.");
+        } else if (msg.action === "AddComment"){
+            showAlert("A comment has been added.");
         }
     });
 
@@ -353,7 +366,7 @@ window.onload = function () {
     $(document.getElementById("welcomeJumbo")).show();
 
     //Resume session from cookie
-    //TODO: Obviously it is #bad to store a password in a cookie.
+    //Obviously it is not ideal to store a password in a cookie.
     if ($.cookie("username")) {
         var username = $.cookie("username"),
             password = $.cookie("password");
