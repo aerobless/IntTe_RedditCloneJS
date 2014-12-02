@@ -77,66 +77,88 @@
                     <p class="pull-right visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
+
+                    <!-- INFO JUMBO (just text) -->
                    <div class="jumbotron" id="welcomeJumbo">
                         <h1>Hello, {{username}}!</h1>
                         <p>This is reddit. Reddit this is. Is it reddit? It is reddit. Why not build a snowman? Because reddit. Reddit, Reddit, Reddit. Get reddit for free! Call now 0800-999-999 to subscribe to Reddit for only USD 99. That's practically free.</p>
                     </div>
+
+                    <!-- REGISTRATION JUMBO -->
                     <div class="jumbotron" id="registrationJumbo">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-7">
                                     <form role="form">
-                                        <h2>Join us: <small>RedditCloneJS is free and always will be.</small></h2>
-                                        <hr class="colorgraph">
+                                        <h2>Join us: <small>RedditCloneJS is awesome!</small></h2>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-12">
+                                                <hr class="colorgraph">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-6">
                                                 <div class="form-group">
                                                     <input type="text" name="first_name" id="first_name" class="form-control input-lg smallerFont" placeholder="First Name" tabindex="1">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="col-xs-12 col-sm-3 col-md-6">
                                                 <div class="form-group">
                                                     <input type="text" name="last_name" id="last_name" class="form-control input-lg smallerFont" placeholder="Last Name" tabindex="2">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" name="display_name" id="usernameRegistration" class="form-control input-lg smallerFont" placeholder="Username" tabindex="3">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" name="email" id="email" class="form-control input-lg smallerFont" placeholder="Email Address" tabindex="4">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" name="display_name" id="usernameRegistration" class="form-control input-lg smallerFont" placeholder="Username" tabindex="3">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-12">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" id="email" class="form-control input-lg smallerFont" placeholder="Email Address" tabindex="4">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-6">
                                                 <div class="form-group">
                                                     <input type="password" name="password" id="passwordRegistration" class="form-control input-lg smallerFont" placeholder="Password" tabindex="5">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <div class="col-xs-12 col-sm-3 col-md-6">
                                                 <div class="form-group">
                                                     <input type="password" name="password_confirmation" id="passwordConfirmationRegistration" class="form-control input-lg smallerFont" placeholder="Confirm Password" tabindex="6">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-8 col-sm-9 col-md-9 smallerFont">
+                                            <div class="col-xs-8 col-sm-6 col-md-9 smallerFont">
                                                 <p>By clicking <strong class="label label-success">Submit</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.</p>
                                             </div>
                                         </div>
 
-                                        <hr class="colorgraph">
                                         <div class="row">
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-6 col-md-12">
+                                                <hr class="colorgraph">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-3 col-md-6">
                                                 <a href="#" class="btn btn-success btn-block btn-lg" tabindex="7" id="submitRegistration">Submit</a>
                                             </div>
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-sm-3 col-md-6">
                                                 <a href="#" class="btn btn-danger btn-block btn-lg" id="cancelRegistration">Cancel</a>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <!-- Modal -->
+
+                            <!-- Modal FOR REGISTRATION JUMBO (included)-->
                             <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -162,11 +184,11 @@
                         </div>
                     </div>
 
-
+                    <!-- ADD LINK JUMBO -->
                     <div class="jumbotron" id="postJumbo">
                         <div class="container">
                             <h1>Post a link</h1>
-                            <div class="col-md-7">
+                            <div class="col-xs-12 col-sm-6 col-lg-7">
                                 <form role="form">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Title" id="postTitle">
