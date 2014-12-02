@@ -67,6 +67,15 @@ function findUser(name)
 	return null;
 }
 
+function compare(a, b) {
+    "use strict";
+    if (a.rating.value < b.rating.value)
+        return 1;
+    if (a.rating.value > b.rating.value)
+        return -1;
+    return 0;
+}
+
 function returnIndex(res, id, array) {
     if (array.length <= id || id < 0) {
         res.statusCode = 404;
@@ -120,13 +129,11 @@ app.get('/login', function (req, res) {
  app.get('/users', function (req, res) {
      res.json(users);
  });
-
- 
  
  app.get('/entries', function (req, res) {
-    res.json(entries);
+     entries.sort(compare);
+     res.json(entries);
 });
-
 
 app.post('/entry', function(req, res) {
     var newLink = new Link(entries.length, req.body.title, users[req.session.user_id].name, req.body.url);	
