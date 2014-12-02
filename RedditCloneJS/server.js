@@ -132,6 +132,10 @@ app.get('/login', function (req, res) {
  
  app.get('/entries', function (req, res) {
      entries.sort(compare);
+     entries.forEach(function (value, i, theArray) {
+         "use strict";
+         value.comments.sort(compare);
+     });
      res.json(entries);
 });
 
