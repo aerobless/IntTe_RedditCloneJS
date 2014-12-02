@@ -67,3 +67,11 @@
 {
     text-decoration: none;
 }
+
+.brand {
+    max-height: 40px;
+    overflow: visible;
+    padding-top: 8px;
+    padding-bottom: 0;
+    float: none;
+}
