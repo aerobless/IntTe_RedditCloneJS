@@ -140,11 +140,25 @@ app.get('/login', function (req, res) {
 });
 
 app.post('/entry', function(req, res) {
-    var newLink = new Link(entries.length, req.body.title, users[req.session.user_id].name, req.body.url);	
+    "use strict";
+
+    var url = req.body.url;
+    if (!/^(f|ht)tps?:\/\//i.test(url)) {
+        url = "http://" + url;
+    }
+
+    var newLink = new Link(entries.length, req.body.title, users[req.session.user_id].name, req.body.url);
  	entries.push(newLink);
  	res.json(newLink);
  	io.sockets.emit('message', { action: "AddLink" });
 });
+
+function addhttp(url) {
+    if (!/^(f|ht)tps?:\/\//i.test(url)) {
+        url = "http://" + url;
+    }
+    return url;
+}
 
 app.get('/entry/:id', function(req, res) {
    returnIndex(res,  req.params.id, entries);
