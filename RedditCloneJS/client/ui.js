@@ -148,7 +148,7 @@ var showPostForm = function () {
 
     document.getElementById("submitPost").onclick = function () {
         var postTitle = document.getElementById("postTitle").value,
-            postURL = document.getElementById("postTitle").value;
+            postURL = document.getElementById("postURL").value;
 
         $.post("/entry",
             {
